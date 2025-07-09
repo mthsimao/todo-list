@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO LIST</title>
+    <link rel="stylesheet" href="css/output.css">
+</head>
+<body class="bg-white text-black dark:bg-black dark:text-white">
+    <div class="container max-w-[750px] mx-auto text-center p-10">
+        <div class="title mb-4">
+            <h1 class="font-kanit text-2xl font-bold">TODO LIST</h1>
+        </div>
+
+        <div class="flex flex-col gap-3">
+            <div class="flex flex-row justify-center items-center gap-3">
+                <div class="w-full">
+                    <input type="text" id="add-note-input" placeholder="Create your note..." class="w-full border border-purple dark:border-white rounded-[8px] p-2.5">
+                </div>
+
+                <div>
+                    <button id="add-note-btn" class="bg-purple text-white p-2 rounded-lg font-medium cursor-pointer hover:bg-purple-200 transition-colors duration-200 ">
+                        <img src="images/plus.svg">
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-row justify-center items-center gap-3">
+                
+                <div class="w-full">
+                    <input type="text" name="search" class="w-full border border-purple dark:border-white rounded-[8px] p-2.5" id="searchInput" placeholder="Search note...">
+                </div>
+
+                <div class="filter-container">
+                    <select id="filter-input" class="bg-purple p-3 text-white rounded-lg border-0 outline-0 shadow-md font-medium cursor-pointer hover:bg-purple-200 transition-colors duration-200">
+                        <option value="All">All</option>
+                        <option value="Complete">Complete</option>
+                        <option value="Incomplete">Incomplete</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <button id="toggle-theme" class="p-2 bg-purple-200 rounded-lg shadow-2xl hover:cursor-pointer transition-colors duration-200 absolute right-6 bottom-6 z-10">
+            <img src="images/moon.svg" alt="Dark mode icon" id="img">
+        </button>
+
+        <div class="flex flex-col mt-10">
+            <div class="note flex flex-row justify-between items-center border-b border-b-purple py-4">
+                <label>
+                    <input type="checkbox" id="meuCheckbox" >
+                    <div class="checkbox-custom"></div>
+                    <span>Texto do checkbox</span>
+                </label>
+
+                <div>
+                    <button class="cursor-pointer">
+                        <img src="images/trash.svg" alt="delete task">
+                    </button>
+                </div>
+            </div>
+
+            <div class="note flex flex-row justify-between items-center border-b border-b-purple py-4">
+                <label>
+                    <input type="checkbox" id="meuCheckbox">
+                    <div class="checkbox-custom"></div>
+                    <span>Texto do checkbox 2</span>
+                </label>
+
+                <div>
+                    <button class="cursor-pointer">
+                        <img src="images/trash.svg" alt="delete task">
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
