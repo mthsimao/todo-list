@@ -12,59 +12,37 @@
   --font-kanit: "Kanit", sans-serif;
 }
 
-/* Esconde o checkbox padrão */
-input[type="checkbox"] {
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--color-purple);
+}
+
+.task-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task-title span {
+  font-family: var(--font-kanit);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.task-options {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+}
+
+.task-description {
+  padding: 6px;
+  margin: 8p 0;
+  text-align: left;
+}
+
+.hide {
   display: none;
 }
-
-/* Estiliza o elemento visual */
-.checkbox-custom {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-purple);
-  border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-}
-
-/* Estiliza o estado "marcado" */
-.checkbox-custom::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-purple);
-  background-image: url('../images/check.svg');
-  background-position: center center;
-  border-radius: 2px;
-  opacity: 0; /* Inicialmente invisível */
-  transition: opacity 0.2s ease; /* Adiciona uma animação */
-}
-
-/* Mostra o elemento "marcado" quando o checkbox é selecionado */
-input[type="checkbox"]:checked + .checkbox-custom::before {
-  opacity: 1;
-}
-
-input[type="checkbox"]:checked label span{
-    text-decoration: line-through;
-    background-color: red;
-}
-
-/* Adiciona um estilo para o label, se necessário */
-label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 1rem;
-}
-
-/* Estilo para o label junto com o checkbox */
-label span {
-  margin-left: 5px;
-}
-

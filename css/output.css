@@ -7,10 +7,13 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-300: oklch(80.8% 0.114 19.571);
     --color-purple-200: #413bad;
     --color-black: #252525;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --text-xl: 1.25rem;
+    --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --font-weight-medium: 500;
@@ -182,6 +185,9 @@
   .z-10 {
     z-index: 10;
   }
+  .z-20 {
+    z-index: 20;
+  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -203,6 +209,12 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+  .mt-6 {
+    margin-top: calc(var(--spacing) * 6);
+  }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
@@ -212,14 +224,38 @@
   .flex {
     display: flex;
   }
+  .hidden {
+    display: none;
+  }
+  .table {
+    display: table;
+  }
+  .h-fit {
+    height: fit-content;
+  }
+  .h-full {
+    height: 100%;
+  }
+  .w-fit {
+    width: fit-content;
+  }
   .w-full {
     width: 100%;
   }
   .max-w-\[750px\] {
     max-width: 750px;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
+  }
+  .resize-none {
+    resize: none;
   }
   .flex-col {
     flex-direction: column;
@@ -229,9 +265,6 @@
   }
   .items-center {
     align-items: center;
-  }
-  .justify-between {
-    justify-content: space-between;
   }
   .justify-center {
     justify-content: center;
@@ -253,15 +286,8 @@
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
-  .border-b {
-    border-bottom-style: var(--tw-border-style);
-    border-bottom-width: 1px;
-  }
   .border-purple {
     border-color: var(--color-purple);
-  }
-  .border-b-purple {
-    border-bottom-color: var(--color-purple);
   }
   .bg-purple {
     background-color: var(--color-purple);
@@ -269,8 +295,17 @@
   .bg-purple-200 {
     background-color: var(--color-purple-200);
   }
+  .bg-red-300 {
+    background-color: var(--color-red-300);
+  }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .p-1 {
+    padding: calc(var(--spacing) * 1);
+  }
+  .p-1\.5 {
+    padding: calc(var(--spacing) * 1.5);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -284,8 +319,20 @@
   .p-10 {
     padding: calc(var(--spacing) * 10);
   }
-  .py-4 {
-    padding-block: calc(var(--spacing) * 4);
+  .px-1 {
+    padding-inline: calc(var(--spacing) * 1);
+  }
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-3 {
+    padding-block: calc(var(--spacing) * 3);
   }
   .text-center {
     text-align: center;
@@ -296,6 +343,10 @@
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
@@ -311,6 +362,9 @@
   .text-white {
     color: var(--color-white);
   }
+  .underline {
+    text-decoration-line: underline;
+  }
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -318,6 +372,10 @@
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .outline-0 {
     outline-style: var(--tw-outline-style);
@@ -363,48 +421,34 @@
   }
 }
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-input[type="checkbox"] {
-  display: none;
-}
-.checkbox-custom {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-purple);
-  border-radius: 2px;
-  position: relative;
-  cursor: pointer;
-}
-.checkbox-custom::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-purple);
-  background-image: url('../images/check.svg');
-  background-position: center center;
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-input[type="checkbox"]:checked + .checkbox-custom::before {
-  opacity: 1;
-}
-input[type="checkbox"]:checked label span {
-  text-decoration: line-through;
-  background-color: red;
-}
-label {
+.task {
   display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--color-purple);
 }
-label span {
-  margin-left: 5px;
+.task-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.task-title span {
+  font-family: var(--font-kanit);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.task-options {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+}
+.task-description {
+  padding: 6px;
+  margin: 8p 0;
+  text-align: left;
+}
+.hide {
+  display: none;
 }
 @property --tw-border-style {
   syntax: "*";

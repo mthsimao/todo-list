@@ -1,9 +1,9 @@
 let button = document.getElementById("toggle-theme");
 const html = document.querySelector("html");
 let img = document.querySelector("#img");
-let addNoteInput = document.querySelector("#add-note-input");
-let addNoteBtn = document.querySelector("#add-note-btn");
-let notesContainer = document.querySelector(".notes");
+let addtaskInput = document.querySelector("#add-task-input");
+let addtaskBtn = document.querySelector("#add-task-btn");
+let tasksContainer = document.querySelector(".tasks");
 
 button.addEventListener("click", () => {
   html.classList.toggle("dark");
@@ -15,20 +15,34 @@ button.addEventListener("click", () => {
   }
 });
 
-const createNote = () => {
-  const div = document.createElement("div");
+const createtask = () => {
+  const divTask = document.createElement("div");
+  divTask.classList.add("task");
 
-  let title = addNoteInput.value;
+  const divTaskHeader = document.createElement("div");
+  divTaskHeader.classList.add("task-header");
 
-  let boxTitle = document.createElement('div')
-  boxTitle.innerHTML = `<input type="checkbox" id="checkInput"> <p>${title}</p>`
+  const taskTitle = document.createElement("div");
+  taskTitle.classList.add("task-title");
 
-  div.append(boxTitle);
+  let title = document.createElement("span");
+  title.textContent = addtaskInput.value;
 
-  notesContainer.appendChild(div);
+  const options = document.createElement("div");
+  options.classList.add("task-options");
+
+  const btn = document.createElement("button");
+  const imgCheck = document.createElement('img')
+
+  imgCheck.src = 'images/check.svg'
+
+  taskTitle.appendChild(title);
+  divTaskHeader.appendChild(taskTitle);
+  divTask.appendChild(divTaskHeader);
+  tasksContainer.appendChild(divTask)
 };
 
-addNoteBtn.addEventListener("click", () => {
+addtaskBtn.addEventListener("click", () => {
   console.log("oi");
-  createNote();
+  createtask();
 });
