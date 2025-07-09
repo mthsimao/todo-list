@@ -15,7 +15,7 @@ button.addEventListener("click", () => {
   }
 });
 
-const createtask = () => {
+const createTask = () => {
   const divTask = document.createElement("div");
   divTask.classList.add("task");
 
@@ -32,17 +32,37 @@ const createtask = () => {
   options.classList.add("task-options");
 
   const btn = document.createElement("button");
-  const imgCheck = document.createElement('img')
+  const imgCheck = document.createElement("img");
+  imgCheck.src = "images/check.svg";
 
-  imgCheck.src = 'images/check.svg'
+  const btn2 = document.createElement("button");
+  const imgDelete = document.createElement("img");
+  imgDelete.src = "images/trash.svg";
 
-  taskTitle.appendChild(title);
-  divTaskHeader.appendChild(taskTitle);
+  const description = document.createElement('div')
+  description.classList.add('task-description')
+  const descriptionParagraphy = document.createElement('p')
+
+  descriptionParagraphy.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, dicta amet placeat possimus provident at fugit impedit ut harum debitis quia culpa animi laborum ab optio eaque dolor ipsa et.'
+
+  description.appendChild(descriptionParagraphy)
+
+  tasksContainer.appendChild(divTask);
   divTask.appendChild(divTaskHeader);
-  tasksContainer.appendChild(divTask)
+  divTask.appendChild(description)
+  divTaskHeader.appendChild(taskTitle);
+  divTaskHeader.appendChild(options)
+  taskTitle.appendChild(title);
+  
+  options.appendChild(btn);
+  options.appendChild(btn2);
+  btn.appendChild(imgCheck);
+  btn2.appendChild(imgDelete);
+ 
+  
 };
 
 addtaskBtn.addEventListener("click", () => {
   console.log("oi");
-  createtask();
+  createTask();
 });
