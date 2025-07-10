@@ -7,74 +7,51 @@
     <link rel="stylesheet" href="css/output.css">
 </head>
 <body class="bg-white text-black dark:bg-black dark:text-white">
-    <div class="container max-w-[750px] mx-auto text-center p-10">
+    <div class="container max-w-[650px] mx-auto text-center p-10">
         <div class="title mb-4">
             <h1 class="font-kanit text-2xl font-bold">TODO LIST</h1>
         </div>
 
         <div class="flex flex-col gap-3">
-            <div class="flex flex-row justify-center items-center gap-3">
+            <div class="flex flex-col justify-center items-center gap-2 md:flex-row">
                 <div class="w-full">
-                    <input type="text" id="add-task-input" placeholder="Create your task..." class="w-full border border-purple dark:border-white rounded-[8px] p-2.5">
-                </div>
+                    <input type="text" id="add-task-input" placeholder="Título da tarefa..." class="w-full border border-purple dark:border-white rounded-[8px] p-2.5 mb-2" required>
 
-                <div>
-                    <button id="add-task-btn" class="bg-purple text-white p-2 rounded-lg font-medium cursor-pointer hover:bg-purple-200 transition-colors duration-200 ">
-                        <img src="images/plus.svg">
+                    <textarea id="task-description" class="w-full border border-purple dark:border-white rounded-[8px] p-2.5 resize-none" placeholder="Descrição" required></textarea>
+                </div>
+                <div class="w-full md:w-auto">
+                    <button type="submit" id="add-task-btn" class="bg-purple text-white p-2 rounded-lg font-medium cursor-pointer hover:bg-purple-200 transition-colors duration-200 w-full">
+                        <span class=" md:hidden">Adicionar task</span>
+                        <img src="images/plus.svg" class="hidden md:inline-block">
                     </button>
                 </div>
             </div>
 
-            <div class="flex flex-row justify-center items-center gap-3">
+            <div class="flex flex-col justify-center items-start gap-3 md:flex-row md:items-center">
                 
                 <div class="w-full">
-                    <input type="text" name="search" class="w-full border border-purple dark:border-white rounded-[8px] p-2.5" id="searchInput" placeholder="Search task...">
+                    <input type="text" name="search" class="w-full border border-purple dark:border-white rounded-[8px] p-2.5" id="searchInput" placeholder="Buscar tarefa...">
                 </div>
 
                 <div class="filter-container">
                     <select id="filter-input" class="bg-purple p-3 text-white rounded-lg border-0 outline-0 shadow-md font-medium cursor-pointer hover:bg-purple-200 transition-colors duration-200">
-                        <option value="All">All</option>
-                        <option value="Complete">Complete</option>
-                        <option value="Incomplete">Incomplete</option>
+                        <option value="All">Todas</option>
+                        <option value="Complete">Completa</option>
+                        <option value="Incomplete">Incompleta</option>
                     </select>
                 </div>
             </div>
-        </div>
+        </div>     
 
+        <div class="tasks flex flex-col gap-5 mt-10">
+        </div>
         
 
-        <div class="">
+        <div>
             <button id="toggle-theme" class="p-2 bg-purple-200 rounded-lg shadow-2xl hover:cursor-pointer transition-colors duration-200 fixed right-4 bottom-4 z-10">
                 <img src="images/moon.svg" alt="Dark mode icon" id="img">
             </button>
         </div>
-
-        <div class="tasks flex flex-col gap-5 mt-10">
-
-            <div class="task">
-                
-                <div class="task-header">
-                    <div class="task-title">
-                        <span>TASK #1</span>
-                    </div>
-
-                    <div class="task-options">
-                        <button>
-                            <img src="images/check.svg" alt="Check task">
-                        </button>
-
-                        <button>
-                            <img src="images/trash.svg" alt="Delete task">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="task-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, dicta amet placeat possimus provident at fugit impedit ut harum debitis quia culpa animi laborum ab optio eaque dolor ipsa et.</p>
-                </div>
-            </div>
-        </div>
-        
     </div>
     <script src="js/script.js"></script>
 </body>

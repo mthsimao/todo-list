@@ -3,6 +3,8 @@ const html = document.querySelector("html");
 let img = document.querySelector("#img");
 let addtaskInput = document.querySelector("#add-task-input");
 let addtaskBtn = document.querySelector("#add-task-btn");
+let searchInput = document.querySelector("#searchInput");
+let taskDescription = document.querySelector("#task-description");
 let tasksContainer = document.querySelector(".tasks");
 
 button.addEventListener("click", () => {
@@ -39,30 +41,49 @@ const createTask = () => {
   const imgDelete = document.createElement("img");
   imgDelete.src = "images/trash.svg";
 
-  const description = document.createElement('div')
-  description.classList.add('task-description')
-  const descriptionParagraphy = document.createElement('p')
+  const description = document.createElement("div");
+  description.classList.add("task-description");
+  const descriptionParagraphy = document.createElement("p");
 
-  descriptionParagraphy.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, dicta amet placeat possimus provident at fugit impedit ut harum debitis quia culpa animi laborum ab optio eaque dolor ipsa et.'
+  descriptionParagraphy.textContent = taskDescription.value;
 
-  description.appendChild(descriptionParagraphy)
+  description.appendChild(descriptionParagraphy);
 
   tasksContainer.appendChild(divTask);
   divTask.appendChild(divTaskHeader);
-  divTask.appendChild(description)
+  divTask.appendChild(description);
   divTaskHeader.appendChild(taskTitle);
-  divTaskHeader.appendChild(options)
+  divTaskHeader.appendChild(options);
   taskTitle.appendChild(title);
-  
+
   options.appendChild(btn);
   options.appendChild(btn2);
   btn.appendChild(imgCheck);
   btn2.appendChild(imgDelete);
- 
-  
 };
 
-addtaskBtn.addEventListener("click", () => {
-  console.log("oi");
-  createTask();
+addtaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (!addtaskInput.value == "") {
+    createTask();
+    addtaskInput.value = "";
+    taskDescription.value = "";
+  }
 });
+
+searchInput.addEventListener('input', () => {
+  let titles = document.querySelectorAll('.task')
+  let searchTerm = searchInput.value.toLowerCase()
+
+  titles.forEach((title) => {
+    let name = title.textContent.toLowerCase() 
+
+    if(name.includes(searchTerm)) {
+      title.classList.remove('hide')
+    } else {
+      title.classList.add('hide')
+    }
+  })
+
+})
