@@ -2,10 +2,19 @@ let button = document.getElementById("toggle-theme");
 const html = document.querySelector("html");
 let img = document.querySelector("#img");
 let addtaskInput = document.querySelector("#add-task-input");
-let addtaskBtn = document.querySelector("#add-task-btn");
+let addtaskBtn = document.querySelector("#add-task");
 let searchInput = document.querySelector("#searchInput");
 let taskDescription = document.querySelector("#task-description");
 let tasksContainer = document.querySelector(".tasks");
+
+let popUp = document.querySelector("#popup");
+let cancelBtn = document.querySelector("#cancel-popup");
+
+const cancelPopUP = () => popUp.classList.toggle("hidden");
+
+cancelBtn.addEventListener("click", () => {
+  cancelPopUP();
+});
 
 button.addEventListener("click", () => {
   html.classList.toggle("dark");
@@ -36,6 +45,10 @@ const createTask = () => {
   const btn = document.createElement("button");
   const imgCheck = document.createElement("img");
   imgCheck.src = "images/check.svg";
+
+  imgCheck.addEventListener("click", () => {
+    divTask.classList.toggle("complete");
+  });
 
   const btn2 = document.createElement("button");
   const imgDelete = document.createElement("img");
@@ -69,21 +82,21 @@ addtaskBtn.addEventListener("click", (e) => {
     createTask();
     addtaskInput.value = "";
     taskDescription.value = "";
+    cancelPopUP();
   }
 });
 
-searchInput.addEventListener('input', () => {
-  let titles = document.querySelectorAll('.task')
-  let searchTerm = searchInput.value.toLowerCase()
+searchInput.addEventListener("input", () => {
+  let titles = document.querySelectorAll(".task");
+  let searchTerm = searchInput.value.toLowerCase();
 
   titles.forEach((title) => {
-    let name = title.textContent.toLowerCase() 
+    let name = title.textContent.toLowerCase();
 
-    if(name.includes(searchTerm)) {
-      title.classList.remove('hide')
+    if (name.includes(searchTerm)) {
+      title.classList.remove("hide");
     } else {
-      title.classList.add('hide')
+      title.classList.add("hide");
     }
-  })
-
-})
+  });
+});

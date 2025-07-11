@@ -8,8 +8,13 @@
   --color-purple: #6c63ff;
   --color-purple-200: #413bad;
   --color-black: #252525;
+  --color-black2: #25252590;
   --color-white: #fff;
   --font-kanit: "Kanit", sans-serif;
+}
+
+* {
+  font-family: var(--font-kanit);
 }
 
 .task {
@@ -29,7 +34,7 @@
   font-family: var(--font-kanit);
   font-size: 1.1rem;
   font-weight: bold;
-  text-transform: capitalize ;
+  text-transform: capitalize;
 }
 
 .task-options {
@@ -37,6 +42,10 @@
   flex-direction: row;
   gap: 1.2rem;
   padding-right: 8px;
+}
+
+.task-options button {
+  cursor: pointer;
 }
 
 .task-description {
@@ -47,4 +56,10 @@
 
 .hide {
   display: none;
+}
+
+.complete span {
+  color: #9b9b9b;
+  text-decoration: line-through;
+  font-style: italic;
 }
