@@ -13,29 +13,39 @@ let cancelBtn = document.querySelector("#cancel-popup");
 
 // Functions
 
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+  html.classList.add("dark");
+  img.src = "../images/sun.svg";
+} else {
+  html.classList.remove("dark");
+  img.src = "../images/moon.svg";
+}
+
 const cancelPopUP = () => popUp.classList.toggle("hidden");
 
 const abrirPopUp = () => popUp.classList.toggle("hidden");
 
 const filtrar = (filterValue) => {
-  const todos = document.querySelectorAll(".task");
+  const tasks = document.querySelectorAll(".task");
 
   switch (filterValue) {
     case "all":
-      todos.forEach((todo) => todo.classList.remove("hide"));
+      tasks.forEach((task) => task.classList.remove("hide"));
       break;
     case "complete":
-      todos.forEach((todo) => {
-        todo.classList.contains("complete")
-          ? todo.classList.remove("hide")
-          : todo.classList.toggle("hide");
+      tasks.forEach((task) => {
+        task.classList.contains("complete")
+          ? task.classList.remove("hide")
+          : task.classList.toggle("hide");
       });
       break;
     case "incomplete":
-      todos.forEach((todo) => {
-        !todo.classList.contains("complete")
-          ? todo.classList.remove("hide")
-          : todo.classList.toggle("hide");
+      tasks.forEach((task) => {
+        !task.classList.contains("complete")
+          ? task.classList.remove("hide")
+          : task.classList.toggle("hide");
       });
       break;
     default:
@@ -43,10 +53,7 @@ const filtrar = (filterValue) => {
   }
 };
 
-
-const createTask = (span) => {
-  imgEmpty.classList.add("hidden");
-
+const createTask = (span, done = 0, save = 1) => {
   const divTask = document.createElement("div");
   divTask.classList.add("task");
   tasksContainer.appendChild(divTask);
@@ -72,14 +79,9 @@ const createTask = (span) => {
 
   imgCheck.addEventListener("click", () => {
     divTask.classList.toggle("complete");
+    updateTaskStatusLocalStorage(span);
+    checkIfEmpty();
   });
-
-  const btn3 = document.createElement("button");
-  const imgEdit = document.createElement("img");
-  imgEdit.src = "images/edit.svg";
-  imgEdit.classList.add("edit");
-  btn3.appendChild(imgEdit);
-  options.appendChild(btn3);
 
   const btn2 = document.createElement("button");
   const imgDelete = document.createElement("img");
@@ -90,9 +92,22 @@ const createTask = (span) => {
 
   imgDelete.addEventListener("click", () => {
     divTask.remove();
+    removeTaskLocalStorage(span);
+    checkIfEmpty();
   });
 
+  // utilizando dados da local storage
+
+  if (done) {
+    divTask.classList.toggle("complete");
+  }
+
+  if (save) {
+    saveTaskLocalStorage({ span, done });
+  }
+
   addtaskInput.value = "";
+  checkIfEmpty();
 };
 
 // Events
@@ -106,8 +121,10 @@ button.addEventListener("click", () => {
 
   if (html.classList.contains("dark")) {
     img.src = "../images/sun.svg";
+    localStorage.setItem("theme", "dark");
   } else {
     img.src = "../images/moon.svg";
+    localStorage.setItem("theme", "light");
   }
 });
 
@@ -154,3 +171,58 @@ searchInput.addEventListener("input", () => {
     }
   });
 });
+
+// local storage
+
+const getTaskLocalStorage = () => {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  return tasks;
+};
+
+const loadTasks = () => {
+  const tasks = getTaskLocalStorage();
+
+  tasks.forEach((task) => {
+    createTask(task.span, task.done, 0);
+  });
+};
+
+const saveTaskLocalStorage = (task) => {
+  const tasks = getTaskLocalStorage();
+
+  tasks.push(task);
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+
+const removeTaskLocalStorage = (taskText) => {
+  const tasks = getTaskLocalStorage();
+
+  const filteredTasks = tasks.filter((task) => task.span !== taskText);
+
+  localStorage.setItem("tasks", JSON.stringify(filteredTasks));
+};
+
+const taskStatusLocalStorage = (taskText) => {
+  const tasks = getTaskLocalStorage();
+
+  tasks.map((task) =>
+    task.span === taskText ? (task.done = !task.done) : null
+  );
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+
+const checkIfEmpty = () => {
+  const tasks = getTaskLocalStorage();
+
+  if (tasks.length === 0) {
+    imgEmpty.classList.remove("hidden");
+  } else {
+    imgEmpty.classList.add("hidden");
+  }
+};
+
+loadTasks();
+checkIfEmpty();

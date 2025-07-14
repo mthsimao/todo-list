@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO LIST</title>
+    <title>Todo List</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="css/output.css" />
   </head>
   <body class="bg-white text-black dark:bg-black dark:text-white">
 
     <div class="container max-w-[708px] mx-auto text-center p-10">
       <div class="title mb-4">
-        <h1 class="font-kanit text-2xl font-bold">TODO LIST</h1>
+        <h1 class="font-kanit text-2xl font-bold">Todo List</h1>
       </div>
 
       <div class="flex flex-col gap-3">
@@ -45,7 +46,7 @@
 
                 <input type="text" id="add-task-input" placeholder="Título da tarefa..." class="w-full border border-purple dark:border-white rounded-[8px] p-2.5 mb-2" required/>
 
-                <div class="flex justify-between items-center gap-2 pt-4">
+                <div class="flex justify-between items-center gap-2 pt-8">
                    
                     <button id="cancel-popup" class="px-4 py-2 border border-purple text-purple rounded cursor-pointer uppercase font-[600]">
                         Cancelar
@@ -64,7 +65,7 @@
     <div class="tasks flex flex-col gap-5 mt-10">
       <div class="empty flex flex-col items-center gap-6">
         <img src="images/empty.svg" class="w-[356px]">
-        <h2 class="font-[600]">Empty...</h2>
+        <h2 class="font-[600]">Não há nada por aqui...</h2>
       </div>
     </div>
 
