@@ -5,6 +5,10 @@ Permite ao usuário adicionar, concluir e excluir tarefas. As tarefas são salva
 
 ---
 
+## 🔧 Solução
+
+- [Link](https://todo-list-simao.vercel.app/)
+
 ## 🚀 Funcionalidades
 
 - ✅ Adicionar novas tarefas  
@@ -36,7 +40,7 @@ Permite ao usuário adicionar, concluir e excluir tarefas. As tarefas são salva
 
 ## 📸 Capturas de tela
 
-> Adicione aqui imagens ou gifs do seu projeto em funcionamento, por exemplo:
+> 2 Screenshots do meu projeto
 
 ![Todo List - Tela Principal](./images/screenshot-desktop.png)
 ![Versão Mobile](./images/screenshot-mobile.png)
