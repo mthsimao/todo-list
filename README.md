@@ -39,5 +39,10 @@ Permite ao usuário adicionar, concluir e excluir tarefas. As tarefas são salva
 > Adicione aqui imagens ou gifs do seu projeto em funcionamento, por exemplo:
 
 ```md
+<<<<<<< HEAD
 ![Todo List - Tela Principal](./images/screenshot-desktop.png)
 ![Versão Mobile](./images/screenshot-mobile.png)
+=======
+![Todo List - Tela Principal](./screenshots/todo-list-main.png)
+![Versão Mobile](./screenshots/todo-list-mobile.png)
+>>>>>>> f4822ac36f184e4ca18ce6ade32295ac46e4a031
