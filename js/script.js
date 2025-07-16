@@ -8,9 +8,6 @@ let tasksContainer = document.querySelector(".tasks");
 let filter = document.querySelector("#filter");
 let imgEmpty = document.querySelector(".empty");
 
-let popUp = document.querySelector("#popup");
-let cancelBtn = document.querySelector("#cancel-popup");
-
 // Functions
 
 const savedTheme = localStorage.getItem("theme");
@@ -22,10 +19,6 @@ if (savedTheme === "dark") {
   html.classList.remove("dark");
   img.src = "../images/moon.svg";
 }
-
-const cancelPopUP = () => popUp.classList.toggle("hidden");
-
-const abrirPopUp = () => popUp.classList.toggle("hidden");
 
 const filtrar = (filterValue) => {
   const tasks = document.querySelectorAll(".task");
@@ -65,17 +58,30 @@ const createTask = (span, done = 0, save = 1) => {
   let title = document.createElement("span");
   title.textContent = span;
   taskTitle.appendChild(title);
+  const editInput = document.createElement("input");
+  editInput.type = "text";
+  editInput.classList.add(
+    "edit-input",
+    "border",
+    "border-purple",
+    "rounded",
+    "p-1.5",
+    "w-full",
+    "hidden"
+  );
+  taskTitle.appendChild(editInput);
 
   const options = document.createElement("div");
   options.classList.add("task-options");
   divTask.appendChild(options);
 
-  const btn = document.createElement("button");
+  // check button
+  const btnCheck = document.createElement("button");
   const imgCheck = document.createElement("img");
   imgCheck.src = "images/check.svg";
   imgCheck.classList.add("finish");
-  options.appendChild(btn);
-  btn.appendChild(imgCheck);
+  options.appendChild(btnCheck);
+  btnCheck.appendChild(imgCheck);
 
   imgCheck.addEventListener("click", () => {
     divTask.classList.toggle("complete");
@@ -83,12 +89,56 @@ const createTask = (span, done = 0, save = 1) => {
     checkIfEmpty();
   });
 
-  const btn2 = document.createElement("button");
+  // edit button
+  const btnEdit = document.createElement("button");
+  const imgEdit = document.createElement("img");
+  imgEdit.src = "images/edit.svg";
+  imgEdit.classList.add("edit");
+  btnEdit.appendChild(imgEdit);
+  options.appendChild(btnEdit);
+
+  imgEdit.addEventListener("click", () => {
+    btnDelete.classList.toggle("hidden");
+    btnCheck.classList.toggle("hidden");
+    title.classList.add("hidden");
+    editInput.classList.remove("hidden");
+    editInput.value = title.textContent;
+    editInput.focus();
+
+    imgEdit.classList.add("hidden");
+
+    // Criar botão de salvar
+    const btnSave = document.createElement("button");
+    const imgSave = document.createElement("img");
+    imgSave.src = "images/save.svg"; // adicione esse ícone também
+    imgSave.classList.add("save");
+    btnSave.appendChild(imgSave);
+    options.insertBefore(btnSave, btnDelete);
+
+    imgSave.addEventListener("click", () => {
+      const newValue = editInput.value.trim();
+      if (newValue && newValue !== title.textContent) {
+        updateTaskTextLocalStorage(span, newValue);
+        span = newValue;
+        title.textContent = newValue;
+      }
+
+      title.classList.remove("hidden");
+      editInput.classList.add("hidden");
+      imgEdit.classList.remove("hidden");
+      btnDelete.classList.toggle("hidden");
+      btnCheck.classList.toggle("hidden");
+      btnSave.remove();
+    });
+  });
+
+  // delete button
+  const btnDelete = document.createElement("button");
   const imgDelete = document.createElement("img");
   imgDelete.src = "images/trash.svg";
   imgDelete.classList.add("remove");
-  btn2.appendChild(imgDelete);
-  options.appendChild(btn2);
+  btnDelete.appendChild(imgDelete);
+  options.appendChild(btnDelete);
 
   imgDelete.addEventListener("click", () => {
     divTask.remove();
@@ -111,10 +161,6 @@ const createTask = (span, done = 0, save = 1) => {
 };
 
 // Events
-
-cancelBtn.addEventListener("click", () => {
-  cancelPopUP();
-});
 
 button.addEventListener("click", () => {
   html.classList.toggle("dark");
@@ -141,7 +187,6 @@ addtaskBtn.addEventListener("click", (e) => {
   if (inputValue) {
     createTask(inputValue);
     addtaskInput.value = "";
-    cancelPopUP();
   }
 });
 
@@ -153,7 +198,6 @@ addtaskInput.addEventListener("keyup", (e) => {
   if (e.key === "Enter" && !addtaskInput.value == "") {
     createTask(inputValue);
     addtaskInput.value = "";
-    cancelPopUP();
   }
 });
 
@@ -204,7 +248,7 @@ const removeTaskLocalStorage = (taskText) => {
   localStorage.setItem("tasks", JSON.stringify(filteredTasks));
 };
 
-const taskStatusLocalStorage = (taskText) => {
+const updateTaskStatusLocalStorage = (taskText) => {
   const tasks = getTaskLocalStorage();
 
   tasks.map((task) =>
@@ -214,6 +258,7 @@ const taskStatusLocalStorage = (taskText) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+// checando o local storage para ver se tem alguma tarefa
 const checkIfEmpty = () => {
   const tasks = getTaskLocalStorage();
 
@@ -222,6 +267,19 @@ const checkIfEmpty = () => {
   } else {
     imgEmpty.classList.add("hidden");
   }
+};
+
+// atualizar o nome da tarefa no local storage
+const updateTaskTextLocalStorage = (oldText, newText) => {
+  const tasks = getTaskLocalStorage();
+  const updatedTasks = tasks.map((task) => {
+    if (task.span === oldText) {
+      return { ...task, span: newText };
+    }
+    return task;
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(updatedTasks));
 };
 
 loadTasks();

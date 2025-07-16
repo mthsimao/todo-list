@@ -11,12 +11,8 @@
     --color-black: #252525;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --container-md: 28rem;
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
-    --font-weight-medium: 500;
     --font-weight-bold: 700;
     --radius-lg: 0.5rem;
     --default-transition-duration: 150ms;
@@ -24,7 +20,6 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-purple: #6c63ff;
-    --color-black2: #252525cc;
     --font-kanit: "Kanit", sans-serif;
   }
 }
@@ -174,18 +169,6 @@
   }
 }
 @layer utilities {
-  .fixed {
-    position: fixed;
-  }
-  .relative {
-    position: relative;
-  }
-  .inset-0 {
-    inset: calc(var(--spacing) * 0);
-  }
-  .bottom-4 {
-    bottom: calc(var(--spacing) * 4);
-  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -210,14 +193,14 @@
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
   }
-  .mb-2 {
-    margin-bottom: calc(var(--spacing) * 2);
-  }
   .mb-4 {
     margin-bottom: calc(var(--spacing) * 4);
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .hidden {
     display: none;
@@ -234,11 +217,11 @@
   .max-w-\[708px\] {
     max-width: 708px;
   }
-  .max-w-\[768px\] {
-    max-width: 768px;
+  .min-w-6 {
+    min-width: calc(var(--spacing) * 6);
   }
-  .max-w-md {
-    max-width: var(--container-md);
+  .min-w-6\.5 {
+    min-width: calc(var(--spacing) * 6.5);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -261,18 +244,6 @@
   .items-center {
     align-items: center;
   }
-  .items-end {
-    align-items: flex-end;
-  }
-  .justify-between {
-    justify-content: space-between;
-  }
-  .justify-center {
-    justify-content: center;
-  }
-  .justify-end {
-    justify-content: flex-end;
-  }
   .justify-start {
     justify-content: flex-start;
   }
@@ -288,14 +259,20 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .gap-7 {
+    gap: calc(var(--spacing) * 7);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
+  .gap-12 {
+    gap: calc(var(--spacing) * 12);
+  }
   .rounded {
     border-radius: 0.25rem;
   }
   .rounded-\[8px\] {
     border-radius: 8px;
-  }
-  .rounded-full {
-    border-radius: calc(infinity * 1px);
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
@@ -306,9 +283,6 @@
   }
   .border-purple {
     border-color: var(--color-purple);
-  }
-  .bg-black2 {
-    background-color: var(--color-black2);
   }
   .bg-purple {
     background-color: var(--color-purple);
@@ -331,29 +305,8 @@
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
-  }
   .p-6 {
     padding: calc(var(--spacing) * 6);
-  }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
-  }
-  .px-2 {
-    padding-inline: calc(var(--spacing) * 2);
-  }
-  .px-4 {
-    padding-inline: calc(var(--spacing) * 4);
-  }
-  .py-2 {
-    padding-block: calc(var(--spacing) * 2);
-  }
-  .pt-4 {
-    padding-top: calc(var(--spacing) * 4);
-  }
-  .pt-8 {
-    padding-top: calc(var(--spacing) * 8);
   }
   .text-center {
     text-align: center;
@@ -365,10 +318,6 @@
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
-  }
   .font-\[600\] {
     --tw-font-weight: 600;
     font-weight: 600;
@@ -377,21 +326,11 @@
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  .font-medium {
-    --tw-font-weight: var(--font-weight-medium);
-    font-weight: var(--font-weight-medium);
-  }
   .text-black {
     color: var(--color-black);
   }
-  .text-purple {
-    color: var(--color-purple);
-  }
   .text-white {
     color: var(--color-white);
-  }
-  .uppercase {
-    text-transform: uppercase;
   }
   .underline {
     text-decoration-line: underline;
@@ -400,21 +339,12 @@
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .shadow-lg {
-    --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
-    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, visibility, content-visibility, overlay, pointer-events;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -442,10 +372,9 @@
       flex-direction: row;
     }
   }
-  .dark\:border {
-    &:where(.dark, .dark *) {
-      border-style: var(--tw-border-style);
-      border-width: 1px;
+  .md\:p-10 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 10);
     }
   }
   .dark\:border-white {
@@ -472,8 +401,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 8px;
+  gap: 1rem;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--color-purple);
+}
+.task-title {
+  text-align: left;
 }
 .task-title span {
   font-family: var(--font-kanit);
@@ -485,7 +418,7 @@
   display: flex;
   flex-direction: row;
   gap: 1.2rem;
-  padding-bottom: 12px;
+  min-width: 110px;
 }
 .task-options button {
   cursor: pointer;
@@ -497,6 +430,9 @@
   color: #9b9b9b;
   text-decoration: line-through;
   font-style: italic;
+}
+input:focus {
+  outline: none;
 }
 @property --tw-rotate-x {
   syntax: "*";

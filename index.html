@@ -4,80 +4,84 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todo List</title>
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/output.css" />
   </head>
   <body class="bg-white text-black dark:bg-black dark:text-white">
-
-    <div class="container max-w-[708px] mx-auto text-center p-10">
+    <div class="container max-w-[708px] mx-auto text-center p-6 md:p-10">
       <div class="title mb-4">
         <h1 class="font-kanit text-2xl font-bold">Todo List</h1>
       </div>
 
       <div class="flex flex-col gap-3">
-        
-
-        <div class="flex flex-col justify-start items-center gap-3 md:flex-row ">
-
-          <div class="w-full md:w-[70%]">
-            <input type="search" name="search" class="w-full border border-purple dark:border-white rounded-[8px] p-2.5" id="searchInput" placeholder="Buscar tarefa..."/>
+        <div class="flex flex-row items-center gap-2">
+          <div class="w-full">
+            <input
+              type="text"
+              name="text"
+              class="w-full border border-purple dark:border-white rounded-[8px] p-2.5"
+              id="add-task-input"
+              placeholder="Título da tarefa..."
+            />
           </div>
 
-
-            <div class="flex flex-row items-center gap-2">
-                
-                <select id="filter" class="bg-purple rounded-lg p-3 text-white shadow-2xl cursor-pointer hover:bg-purple-200 transition-colors duration-200">
-                    <option value="all">Todas</option>
-                    <option value="complete">Completa</option>
-                    <option value="incomplete">Incompleta</option>
-                </select>
-
-                <button id="toggle-theme" class="bg-purple rounded-lg p-1.5 shadow-2x cursor-pointer hover:bg-purple-200 transition-colors duration-200">
-                    <img src="images/moon.svg" alt="Dark theme" id="img">
-                </button>
-            </div>
-        </div>  
-
-        <!-- Pop-up -->
-        <div id="popup" class="fixed inset-0 bg-black2 flex items-center justify-center hidden p-4">
-
-            <div class="bg-white dark:bg-black dark:border dark:border-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
-                <h2 class="text-xl font-bold mb-4">Nova Tarefa</h2>
-
-                <input type="text" id="add-task-input" placeholder="Título da tarefa..." class="w-full border border-purple dark:border-white rounded-[8px] p-2.5 mb-2" required/>
-
-                <div class="flex justify-between items-center gap-2 pt-8">
-                   
-                    <button id="cancel-popup" class="px-4 py-2 border border-purple text-purple rounded cursor-pointer uppercase font-[600]">
-                        Cancelar
-                    </button>
-
-                     <button id="add-task" class="px-4 py-2 bg-purple border border-purple text-white rounded cursor-pointer uppercase font-[600]">
-                        Adicionar
-                    </button>
-                </div>
-            </div>
+          <button
+            id="add-task"
+            class="bg-purple rounded-lg p-2 shadow-2xl cursor-pointer hover:bg-purple-200 transition-colors duration-200"
+          >
+            <img
+              src="images/plus.svg"
+              alt="Adicionar tarefa"
+              class="min-w-6.5"
+            />
+          </button>
         </div>
 
-          
-    </div>
+        <div class="flex flex-col justify-start items-center gap-3 md:flex-row">
+          <div class="w-full md:w-[70%]">
+            <input
+              type="search"
+              name="search"
+              class="w-full border border-purple dark:border-white rounded-[8px] p-2.5"
+              id="searchInput"
+              placeholder="Buscar tarefa..."
+            />
+          </div>
 
-    <div class="tasks flex flex-col gap-5 mt-10">
-      <div class="empty flex flex-col items-center gap-6">
-        <img src="images/empty.svg" class="w-[356px]">
-        <h2 class="font-[600]">Não há nada por aqui...</h2>
+          <div class="flex flex-row items-center gap-2">
+            <select
+              id="filter"
+              class="bg-purple rounded-lg p-3 text-white shadow-2xl cursor-pointer hover:bg-purple-200 transition-colors duration-200"
+            >
+              <option value="all">Todas</option>
+              <option value="complete">Completa</option>
+              <option value="incomplete">Incompleta</option>
+            </select>
+
+            <button
+              id="toggle-theme"
+              class="bg-purple rounded-lg p-1.5 shadow-2xl cursor-pointer hover:bg-purple-200 transition-colors duration-200"
+            >
+              <img
+                src="images/moon.svg"
+                alt="Dark theme"
+                id="img"
+                class="min-w-6.5"
+              />
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="max-w-[768px] px-2 flex justify-end items-end mx-auto">
-        <div class="fixed bottom-4 ">
-
-        <button type="submit" id="add-task-btn" class="bg-purple text-white p-2 rounded-full font-medium cursor-pointer hover:bg-purple-200 transition duration-200 w-full" onclick="abrirPopUp()" >
-          <img src="images/plus.svg" alt="Adicionar tarefa" />
-        </button>
-
+      <div class="tasks flex flex-col gap-8 mt-10">
+        <div class="empty flex flex-col items-center gap-6 hidden">
+          <img src="images/empty.svg" class="w-[356px]" />
+          <h2 class="font-[600]">Não há nada por aqui...</h2>
         </div>
+      </div>
+
     </div>
+
     <script src="js/script.js"></script>
   </body>
 </html>
