@@ -60,6 +60,7 @@ const createTask = (span, done = 0, save = 1) => {
   taskTitle.appendChild(title);
   const editInput = document.createElement("input");
   editInput.type = "text";
+  editInput.id = "edit-btn";
   editInput.classList.add(
     "edit-input",
     "border",
